@@ -12,7 +12,7 @@ func Cmd() *mflag.Ts {
 	mc := mflag.New(app.Flag).UsePackageName("")
 	mc.AddCmd(func(cmd *cobra.Command, args []string) {
 		run(cmd, args)
-	}, "run", "", "mlog")
+	}, "run", "", "app", "mlog")
 	return mc
 }
 
