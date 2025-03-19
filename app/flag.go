@@ -7,6 +7,6 @@ type TsFlag struct {
 	Start struct{} `group:"start" note:"默认配置"`
 
 	App struct {
-		Port int `group:"app" note:"Http 服务端口" default:"8888"`
+		ListenAddr string `group:"app" note:"监听地址" default:"0.0.0.0:8888"`
 	}
 }
