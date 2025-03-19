@@ -79,7 +79,7 @@ tasks:
         docker push {{.REGISTRY}}/{{.IMAGE}}
 
   build:
-    desc: "先编译再运行"
+    desc: "基础编译"
     silent: true
     cmds:
       - go build -ldflags "{{.GO_BUILD_LDFLAGS_X}}" -o {{.GO_BUILD_PATH}} .
