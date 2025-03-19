@@ -5,7 +5,9 @@ import (
 	"os"
 
 	"github.com/lwmacct/250300-go-app-demo/app"
+	"github.com/lwmacct/250300-go-app-demo/app/start"
 	"github.com/lwmacct/250300-go-app-demo/app/test"
+
 	"github.com/lwmacct/250300-go-app-demo/app/version"
 
 	"github.com/lwmacct/250300-go-mod-mflag/pkg/mflag"
@@ -20,6 +22,7 @@ func main() {
 	{
 		// 命令行参数
 		mc.AddCobra(version.Cmd().Cobra())
+		mc.AddCobra(start.Cmd().Cobra())
 
 		// 开发环境中的测试命令
 		if os.Getenv("ACF_SHOW_TEST") == "1" {
