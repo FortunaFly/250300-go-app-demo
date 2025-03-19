@@ -78,20 +78,17 @@ tasks:
         docker tag {{.IMAGE}} {{.REGISTRY}}/{{.IMAGE}}
         docker push {{.REGISTRY}}/{{.IMAGE}}
 
-  build:default:
+  build:
     desc: "先编译再运行"
     silent: true
-    aliases: [run]
     cmds:
       - go build -ldflags "{{.GO_BUILD_LDFLAGS_X}}" -o {{.GO_BUILD_PATH}} .
 
   run:
     desc: "先编译再运行"
     silent: true
-    aliases: [run]
     deps:
-      - task: build:default
+      - task: build
     cmds:
       - |
-        export ACF_SHOW_TEST=1
         {{.GO_BUILD_PATH}} {{.CLI_ARGS}}
