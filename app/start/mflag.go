@@ -2,6 +2,7 @@ package start
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/lwmacct/250300-go-app-demo/app"
 
@@ -21,7 +22,18 @@ func Cmd() *mflag.Ts {
 func run(cmd *cobra.Command, args []string) {
 	_ = map[string]any{"cmd": cmd, "args": args}
 	mlog.Info(mlog.H{"msg": "app.Flag", "data": app.Flag})
-	fmt.Println("Hello, World!")
+
+	// 设置 HTTP 处理函数
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Hello, World!")
+	})
+
+	// 启动 HTTP 服务器
+	port := ":34188"
+	mlog.Info(mlog.H{"msg": "Starting HTTP server", "port": port})
+	if err := http.ListenAndServe(port, nil); err != nil {
+		mlog.Error(mlog.H{"msg": "HTTP server error", "error": err})
+	}
 
 	mlog.Close()
 }
